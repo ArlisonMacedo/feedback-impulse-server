@@ -10,6 +10,10 @@ export const routes = express.Router()
 
 routes.post('/feedback', async (req, res) => {
 
+  try {
+
+  
+
   const {type, comment, screenshot} = req.body
 
   const prismaFeedbacksRepository = new PrismaFeedbacksRepository()
@@ -21,6 +25,10 @@ routes.post('/feedback', async (req, res) => {
   )
 
   await submitFeedbackUseCase.execute({type, comment, screenshot})
+  }
+  catch(error){
+    console.error(error)
+  }
 
   
 
